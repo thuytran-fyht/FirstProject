@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Thanh Thuy | Portfolio</title>
+  <meta name="description" content="Marketing portfolio - Tran Nguyen Thanh Thuy" />
+
+  <style>
+    :root{
+      --bg: #eef6f7;
+      --panel: #dfeff1;
+      --teal: #055b61;
+      --teal2:#0a6f76;
+      --muted:#6c7f83;
+      --ink: #0d2426;
+      --orange:#d46a2b;
+      --line: rgba(5,91,97,.18);
+      --shadow: 0 18px 60px rgba(13,36,38,.18);
+      --r: 22px;
+      --max: 1120px;
+    }
+    .hero-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* căn giữa ngang */
+  text-align: center;    /* căn giữa chữ */
+}
+
+.hero-center .title{
+  width: 100%;
+  text-align: center;
+}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+    a{ color: inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* NAV */
+    .nav{
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(238,246,247,.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 0; gap: 12px;
+    }
+    .brand{ display:flex; align-items:center; gap: 10px; min-width: 180px; }
+    .logo{
+      width:36px; height:36px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal), #0db3b8);
+      box-shadow: 0 16px 35px rgba(5,91,97,.20);
+      position:relative; overflow:hidden;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 55%);
+      transform: rotate(20deg);
+      animation: shine 3.8s ease-in-out infinite;
+    }
+    @keyframes shine{
+      0%,100%{ transform: translateX(-10%) rotate(20deg); opacity:.35; }
+      50%{ transform: translateX(20%) rotate(20deg); opacity:.7; }
+    }
+    .brand .t1{ font-weight: 1000; letter-spacing: .4px; color: var(--teal); text-transform:uppercase; }
+    .brand .t2{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .links{ display:flex; align-items:center; gap: 10px; flex-wrap:wrap; justify-content:flex-end; }
+    .links a{
+      font-size: 14px; color: rgba(5,91,97,.86);
+      padding: 8px 10px; border-radius: 14px;
+      border: 1px solid transparent; transition: .18s ease;
+    }
+    .links a:hover{ border-color: var(--line); background: rgba(5,91,97,.06); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(5,91,97,.06);
+      color: var(--teal);
+      font-weight: 1000;
+      font-size: 14px;
+      transition: .18s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.primary{
+      border-color: transparent;
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(212,106,43,.20);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      padding: 26px 0 0;
+    }
+
+    /* background running text: "THANH THUY" */
+    .bigtype{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+      overflow:hidden;
+      padding-bottom: 40px; /* create extra space so it won't touch bottom */
+    }
+    .bigtype .row{
+      font-weight: 1000; /* bolder */
+      letter-spacing: 1px;
+      font-size: clamp(54px, 10vw, 132px);
+      line-height: .92;
+      color: rgba(5,91,97,.16); /* darker than before */
+      white-space: nowrap;
+      animation: drift 18s linear infinite;
+      margin: 0;
+    }
+    .bigtype .row:nth-child(2){ animation-duration: 22s; opacity:.85; }
+    .bigtype .row:nth-child(3){ animation-duration: 26s; opacity:.75; }
+    @keyframes drift{
+      0%{ transform: translateX(-30%); }
+      100%{ transform: translateX(0%); }
+    }
+
+    .hero-top{
+      position:relative; z-index:1;
+      display:flex; flex-direction:column; gap: 10px;
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
+    .title{
+      margin:0;
+      font-weight: 1000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-size: clamp(44px, 8.6vw, 110px);
+      line-height: .92;
+      animation: popIn .8s ease both;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--orange);
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 22px;
+      text-align:center; /* centered */
+      animation: fadeUp .9s .15s ease both;
+    }
+    @keyframes popIn{
+      0%{ transform: translateY(12px) scale(.98); opacity:0; }
+      100%{ transform: translateY(0) scale(1); opacity:1; }
+    }
+    @keyframes fadeUp{
+      0%{ transform: translateY(10px); opacity:0; }
+      100%{ transform: translateY(0); opacity:1; }
+    }
+
+    /* portfolio centered like your screenshot */
+    .hero-top .subtitle-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+    }
+
+    .hero-panel{
+      position:relative; z-index:1;
+      margin-top: 8px;
+      margin-bottom: 18px; /* space so background text doesn't touch border */
+      background: var(--panel);
+      border-top: 2px solid rgba(13,36,38,.65);
+      border-bottom: 2px solid rgba(13,36,38,.65);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-panel .inner{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items:stretch;
+      padding: 20px 0 28px; /* extra bottom spacing */
+    }
+
+    /* left collage */
+    .collage{
+      position:relative;
+      min-height: 280px;
+      border-radius: var(--r);
+    }
+    .collage .cutout{
+      position:absolute;
+      bottom: -22px;
+      width: 48%;
+      max-width: 320px;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.18));
+      transform-origin: bottom center;
+      animation: floaty 4.6s ease-in-out infinite;
+    }
+    .collage .cutout.c1{ left: 0; width: 46%; animation-delay: .0s; }
+    .collage .cutout.c2{ left: 22%; width: 52%; animation-delay: .25s; }
+    .collage .cutout.c3{ left: 52%; width: 48%; animation-delay: .5s; }
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0) rotate(-.4deg); }
+      50%{ transform: translateY(-10px) rotate(.4deg); }
+    }
+
+    /* right intro */
+    .intro{
+      background: rgba(255,255,255,.35);
+      border: 1px solid rgba(5,91,97,.16);
+      border-radius: var(--r);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 10px;
+      animation: fadeUp .9s .2s ease both;
+    }
+    .intro p{ margin:0; font-size: 14.5px; line-height: 1.7; color: rgba(13,36,38,.86); }
+    .intro b{ color: #000; }
+    .chips{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 6px; }
+    .chip{
+      font-size: 12px; font-weight: 1000; color: var(--teal);
+      border: 1px solid rgba(5,91,97,.22);
+      background: rgba(5,91,97,.06);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    /* sections */
+    section{ padding: 26px 0; }
+    .head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 14px; margin-bottom: 12px;
+    }
+    .h2{
+      margin:0; font-size: 22px; letter-spacing: -.2px;
+      color: var(--teal); font-weight: 1000;
+      display:flex; align-items:center; gap: 10px;
+    }
+    .note{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.5; text-align:right; max-width: 56ch; }
+
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid2{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    .card{
+      background: #ffffff;
+      border: 1px solid rgba(5,91,97,.16);
+      border-radius: var(--r);
+      padding: 16px;
+      box-shadow: 0 18px 55px rgba(13,36,38,.10);
+      transform: translateY(6px);
+      opacity: 0;
+      transition: .55s ease;
+    }
+    .card.show{ transform: translateY(0); opacity: 1; }
+    .card h3{ margin:0 0 8px; font-size: 16px; color: var(--teal); font-weight: 1000; }
+    .card p{ margin:0; color: rgba(13,36,38,.82); font-size: 14px; line-height: 1.6; }
+
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
+    .tag{
+      font-size: 12px; font-weight: 1000; color: rgba(13,36,38,.78);
+      border: 1px dashed rgba(5,91,97,.28);
+      background: rgba(5,91,97,.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    /* projects header arrow button */
+    .head-actions{ display:flex; align-items:center; gap:10px; justify-content:flex-end; }
+    .arrow-link{
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      border: 1px solid rgba(5,91,97,.18);
+      background: rgba(5,91,97,.06);
+      transition: .18s ease;
+    }
+    .arrow-link:hover{ transform: translateY(-1px); background: rgba(5,91,97,.10); }
+    .arrow-link svg{ width: 20px; height: 20px; stroke: var(--teal); stroke-width: 2.6; fill:none; }
+
+    .project{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .thumb{
+      border-radius: 18px;
+      border: 1px solid rgba(5,91,97,.16);
+      background: rgba(5,91,97,.06);
+      overflow:hidden;
+      aspect-ratio: 16 / 9;
+      position:relative;
+    }
+    .thumb img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .thumb .ph{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(13,36,38,.55);
+      font-size: 13px; font-weight: 800;
+      padding: 12px; text-align:center;
+    }
+    .actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 6px; }
+
+    /* gallery squares */
+    .gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+    .g{
+      border-radius: 18px;
+      border: 1px solid rgba(5,91,97,.16);
+      background: rgba(5,91,97,.06);
+      overflow:hidden;
+      aspect-ratio: 1 / 1; /* square */
+      position:relative;
+      transform: translateY(6px);
+      opacity: 0;
+      transition: .55s ease;
+    }
+    .g.show{ transform: translateY(0); opacity: 1; }
+    .g img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .g .ph{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(13,36,38,.55);
+      font-size: 13px; font-weight: 800;
+      padding: 12px; text-align:center;
+    }
+    .span3{ grid-column: span 3; }
+    .span4{ grid-column: span 4; }
+    .span6{ grid-column: span 6; }
+
+    /* contact: ONLY Let's work together (no form) */
+    .contact{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+    .list{ margin: 10px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .li{
+      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(5,91,97,.16);
+      background: rgba(5,91,97,.05);
+      font-size: 14px;
+      color: rgba(13,36,38,.82);
+    }
+    .li strong{ color: var(--teal); font-weight: 1000; }
+    .fine{ margin: 10px 0 0; color: rgba(13,36,38,.55); font-size: 12px; line-height:1.5; }
+
+    footer{
+      padding: 22px 0 40px;
+      border-top: 1px solid var(--line);
+      margin-top: 16px;
+      color: rgba(13,36,38,.55);
+      font-size: 12px;
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .hero-panel .inner{ grid-template-columns: 1fr; }
+      .collage{ min-height: 320px; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .note{ text-align:left; }
+      .links{ justify-content:flex-start; }
+      .collage .cutout{ width: 44%; }
+      .collage .cutout.c2{ left: 26%; width: 50%; }
+      .span3{ grid-column: span 6; }
+    }
+    @media (max-width: 520px){
+      .title{ letter-spacing: .4px; }
+      .collage .cutout{ width: 52%; }
+      .collage .cutout.c2{ left: 22%; width: 58%; }
+      .collage .cutout.c3{ left: 48%; width: 52%; }
+      .span3,.span4,.span6{ grid-column: span 12; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container">
+      <div class="inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div class="t1">THANH THUY</div>
+            <div class="t2">Marketing Portfolio</div>
+          </div>
+        </div>
+
+        <div class="links" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+          <a class="btn primary" href="#contact">Hire me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="bigtype" aria-hidden="true">
+      <div class="row">THANH THUY THANH THUY THANH THUY THANH THUY</div>
+      <div class="row">THANH THUY THANH THUY THANH THUY THANH THUY</div>
+      <div class="row">THANH THUY THANH THUY THANH THUY THANH THUY</div>
+    </div>
+
+    <div class="container">
+        <div class="hero-top hero-center">
+          <h1 class="title">THANH THUY</h1>
+          <p class="subtitle">PORTFOLIO</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="container">
+        <div class="inner">
+          <!-- LEFT: collage (NO extra words in the middle) -->
+          <div class="collage">
+            <!-- Replace with your cutout PNG images -->
+            <img class="cutout c1" src="YOUR_CUTOUT_1.png" alt="Portrait 1" onerror="this.style.display='none';" />
+            <img class="cutout c2" src="YOUR_CUTOUT_2.png" alt="Portrait 2" onerror="this.style.display='none';" />
+            <img class="cutout c3" src="YOUR_CUTOUT_3.png" alt="Portrait 3" onerror="this.style.display='none';" />
+          </div>
+
+          <!-- RIGHT: intro -->
+          <div class="intro">
+            <p>I’m <b>Tran Nguyen Thanh Thuy</b>, a student of International Business with a growing passion for Marketing.</p>
+            <p>To me, every piece of content should be <b>Target-driven</b>, <b>Tastefully crafted</b>, and <b>Thoughtfully delivered</b>.</p>
+            <p>I believe Marketing is not just about aesthetics — it’s about logic, structure, and genuine connection with people.</p>
+            <p>This portfolio reflects my learning journey and the first steps I’m taking on my career path.</p>
+
+            <div class="chips">
+              <span class="chip">Copywrite</span>
+              <span class="chip">Design</span>
+              <span class="chip">Ads Operation</span>
+              <span class="chip">Marketing Analytics</span>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
+              <a class="btn primary" href="YOUR_CV_LINK" target="_blank" rel="noopener">Download my CV</a>
+              <a class="btn" href="#projects">See Projects</a>
+              <a class="btn" href="#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Skills</h2>
+      </div>
+
+      <div class="grid3">
+        <div class="card reveal">
+          <h3>Marketing</h3>
+          <p>• Content strategy<br/>• Data analytics<br/>• Making marketing decision<br/>• Campaign set up & Operation</p>
+        </div>
+        <div class="card reveal">
+          <h3>Tools</h3>
+          <p>• Microsoft Office<br/>• Google Workspace<br/>• Basic analytics<br/>• SQL Server</p>
+        </div>
+        <div class="card reveal">
+          <h3>Strengths</h3>
+          <p>• Structure & logic<br/>• Clear communication<br/>• Consistency<br/>• Quick adaptation</p>
+        </div>
+        <div class="tags">
+            <span class="tag">Detail-oriented</span>
+            <span class="tag">Fast learner</span>
+            <span class="tag">Teamwork</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Projects</h2>
+        <div class="head-actions">
+          <p class="note" style="margin:0;">More details</p>
+          <!-- link to your "All Projects" WordPress page -->
+          <a class="arrow-link" href="YOUR_ALL_PROJECTS_PAGE" aria-label="View all projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h12"></path>
+              <path d="M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card reveal project">
+          <div class="thumb">
+            <img src="c:\Users\Admin\Downloads\portfolio\Presento\Banner.png" alt="Project 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="ph" style="display:none;">Project image 16:9</div>
+          </div>
+          <h3>Project title #1</h3>
+          <p>• Goal<br/>• Role<br/>• Result (metrics if any)</p>
+          <div class="tags">
+            <span class="tag">Content</span>
+            <span class="tag">Social</span>
+            <span class="tag">Design</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="CASE_1_LINK" target="_blank" rel="noopener">Case study</a>
+            <a class="btn primary" href="DEMO_1_LINK" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </div>
+
+        <div class="card reveal project">
+          <div class="thumb">
+            <img src="PROJECT_2.jpg" alt="Project 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="ph" style="display:none;">Project image 16:9</div>
+          </div>
+          <h3>Project title #2</h3>
+          <p>• Goal<br/>• Role<br/>• Result</p>
+          <div class="tags">
+            <span class="tag">Brand</span>
+            <span class="tag">Copy</span>
+            <span class="tag">Strategy</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="CASE_2_LINK" target="_blank" rel="noopener">Case study</a>
+            <a class="btn primary" href="DEMO_2_LINK" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Gallery</h2>
+        <p class="note">Square images</p>
+      </div>
+
+      <div class="gallery">
+        <div class="g reveal span3">
+          <img src="GALLERY_1.jpg" alt="Gallery 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="ph" style="display:none;">Square</div>
+        </div>
+        <div class="g reveal span3">
+          <img src="GALLERY_2.jpg" alt="Gallery 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="ph" style="display:none;">Square</div>
+        </div>
+        <div class="g reveal span3">
+          <img src="GALLERY_3.jpg" alt="Gallery 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="ph" style="display:none;">Square</div>
+        </div>
+        <div class="g reveal span3">
+          <img src="GALLERY_4.jpg" alt="Gallery 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="ph" style="display:none;">Square</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Contact</h2>
+        <p class="note">Fast reply via email</p>
+      </div>
+
+      <div class="contact">
+        <div class="card reveal">
+          <h3>Let’s work together</h3>
+          <p>• Collaboration<br/>• Internship / part-time<br/>• Marketing assistant</p>
+
+          <ul class="list">
+            <li class="li"><span><strong>Email</strong></span><span><a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></span></li>
+            <li class="li"><span><strong>Phone</strong></span><span><a href="tel:YOUR_PHONE">YOUR_PHONE</a></span></li>
+            <li class="li"><span><strong>LinkedIn</strong></span><span><a href="YOUR_LINKEDIN" target="_blank" rel="noopener">Open</a></span></li>
+            <li class="li"><span><strong>CV</strong></span><span><a href="YOUR_CV_LINK" target="_blank" rel="noopener">Open</a></span></li>
+          </ul>
+
+          <p class="fine">Tip: nếu bạn muốn form gửi mail thật trên WordPress, dùng Contact Form 7 / WPForms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> HUY THANH THUY. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // reveal on scroll
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
